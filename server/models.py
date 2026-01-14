@@ -43,3 +43,13 @@ class Project(db.Model):
 
     def __repr__(self):
         return f'<Review {self.id}, {self.title}, {self.budget}>'
+    
+# Association table to store many-to-many relationship between employees and meetings
+employee_meetings = db.Table(
+    'employees_meetings',
+    metadata,
+    db.Column('employee_id', db.Integer, db.ForeignKey(
+        'employees.id'), primary_key=True),
+    db.Column('meeting_id', db.Integer, db.ForeignKey(
+        'meetings.id'), primary_key=True)
+)
